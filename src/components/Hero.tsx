@@ -1,59 +1,62 @@
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden grid-bg">
-      {/* Glow effects */}
-      <div className="hero-glow -top-40 -left-40 animate-pulse-slow" />
-      <div
-        className="hero-glow -bottom-40 -right-40 animate-pulse-slow"
-        style={{ animationDelay: "2s" }}
-      />
+    <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
+      <div className="hero-mesh" />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center pt-24">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs text-zinc-400 mb-8">
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          Houston-Based AI Consulting
+      <div className="relative z-10 mx-auto max-w-4xl px-6 text-center pt-28 pb-20">
+        {/* Badge */}
+        <div className="reveal inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/[0.06] bg-white/[0.02] mb-10">
+          <span className="pulse-dot" />
+          <span className="text-xs text-muted tracking-wide">
+            Houston &middot; AI Consulting
+          </span>
         </div>
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
-          AI That Works
+        {/* Headline */}
+        <h1 className="reveal heading-xl mb-8">
+          AI that works
           <br />
-          <span className="gradient-text">While You Sleep</span>
+          <span className="gradient-text">while you sleep</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-          We deploy autonomous AI agents that handle your operations 24/7.
-          Purpose-built for energy, oil & gas, and industrial companies
-          in the Houston corridor.
+        {/* Sub */}
+        <p className="reveal reveal-delay-1 body-lg max-w-xl mx-auto mb-12">
+          We deploy autonomous AI agents that run your operations 24/7.
+          Purpose-built for energy, oil&nbsp;&amp;&nbsp;gas, and industrial
+          companies in the Houston corridor.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#contact"
-            className="px-8 py-4 rounded-full bg-accent hover:bg-accent-light text-white font-semibold text-lg transition-colors"
-          >
+        {/* CTAs */}
+        <div className="reveal reveal-delay-2 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#contact" className="btn-primary text-base px-8 py-4">
             Get Your AI Assessment
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </a>
-          <a
-            href="#services"
-            className="px-8 py-4 rounded-full glass hover:border-accent/30 text-zinc-300 font-medium text-lg transition-all"
-          >
+          <a href="#services" className="btn-secondary text-base px-8 py-4">
             See What We Build
           </a>
         </div>
 
-        {/* Stats bar */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
+        {/* Stats */}
+        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.04] rounded-2xl overflow-hidden">
           {[
             { value: "60%", label: "Cost Reduction" },
             { value: "24/7", label: "Agent Uptime" },
             { value: "9", label: "AI Agents" },
             { value: "<14d", label: "Time to Deploy" },
-          ].map((s) => (
-            <div key={s.label} className="glass-card p-5">
-              <div className="text-2xl md:text-3xl font-bold gradient-text">
+          ].map((s, i) => (
+            <div
+              key={s.label}
+              className={`reveal reveal-delay-${i + 1} bg-background p-6 md:p-8`}
+            >
+              <div className="text-2xl md:text-3xl font-bold tracking-tight gradient-text">
                 {s.value}
               </div>
-              <div className="text-sm text-zinc-500 mt-1">{s.label}</div>
+              <div className="text-xs text-muted mt-2 tracking-wide">
+                {s.label}
+              </div>
             </div>
           ))}
         </div>
