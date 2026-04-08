@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="reveal inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/[0.06] bg-white/[0.02] mb-10">
           <span className="pulse-dot" />
           <span className="text-xs text-muted tracking-widest font-mono uppercase">
-            Operational &middot; Houston TX
+            HQ: Houston, TX &middot; Operators Worldwide
           </span>
         </div>
 
