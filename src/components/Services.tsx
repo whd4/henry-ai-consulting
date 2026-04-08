@@ -1,35 +1,39 @@
 const operations = [
   {
-    label: "RECON",
-    title: "Threat Assessment",
+    label: "AI AUDIT",
+    title: "Find Your Highest-ROI Opportunity",
     description:
-      "We infiltrate your operations, map every workflow, and identify where you\u2019re losing ground. You get a classified briefing with prioritized targets and projected ROI.",
-    price: "$5K \u2013 $15K",
-    timeline: "1\u20132 weeks",
+      "We infiltrate your operations, map every workflow, and identify where AI delivers the biggest impact. You get a prioritized roadmap with projected ROI for each initiative.",
+    price: "$5K",
+    timeline: "2 weeks",
+    outcome: "Know exactly where to invest in AI",
   },
   {
-    label: "STRIKE",
-    title: "Tactical Automation",
+    label: "AI SPRINT",
+    title: "Working AI Solution, Guaranteed",
     description:
-      "Surgical strikes on your biggest inefficiencies. We deploy AI operators to eliminate manual processes \u2014 document handling, report generation, anomaly detection, pipeline management.",
-    price: "$15K \u2013 $50K",
-    timeline: "4\u20138 weeks",
+      "Pick one high-value problem from the audit. We build, deploy, and validate a production AI solution in 90 days — document automation, anomaly detection, pipeline management, or custom agents.",
+    price: "$25K",
+    timeline: "90 days",
+    outcome: "Live AI system delivering measurable ROI",
   },
   {
-    label: "DEPLOY",
-    title: "Full Force Deployment",
+    label: "AI TRANSFORMATION",
+    title: "Enterprise-Wide Implementation",
     description:
-      "Your own strike team of autonomous AI operators. Nine agents monitoring, analyzing, and executing on your behalf \u2014 around the clock, at a fraction of headcount cost.",
-    price: "$25K \u2013 $100K",
-    timeline: "6\u201312 weeks",
+      "Your own strike team of autonomous AI operators. Nine agents monitoring, analyzing, and executing across your organization — around the clock, at a fraction of headcount cost.",
+    price: "$75K+",
+    timeline: "3–6 months",
+    outcome: "Full AI operations across your business",
   },
   {
-    label: "COMMAND",
-    title: "Ongoing Command & Control",
+    label: "RETAINER",
+    title: "Ongoing Optimization & Support",
     description:
-      "Monthly retainer for continuous mission optimization. We monitor operator performance, deploy new capabilities, and scale your force as the battlefield evolves.",
-    price: "$5K \u2013 $10K/mo",
+      "Monthly engagement for continuous improvement. We monitor AI performance, deploy new capabilities, retrain models, and scale your systems as your business evolves.",
+    price: "$5K–$10K/mo",
     timeline: "Ongoing",
+    outcome: "AI that gets smarter every month",
   },
 ];
 
@@ -38,12 +42,16 @@ export default function Services() {
     <section id="services" className="py-28 md:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <div className="reveal text-center mb-20">
-          <p className="label mb-4">Operations</p>
+          <p className="label mb-4">Services &amp; Pricing</p>
           <h2 className="heading-lg">
             Four levels of
             <br />
             <span className="gradient-text-warm">engagement.</span>
           </h2>
+          <p className="body-lg max-w-lg mx-auto mt-5">
+            Fixed-price. Defined scope. Measurable outcomes.
+            No open-ended consulting bills.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-5">
@@ -54,7 +62,10 @@ export default function Services() {
             >
               <span className="label mb-5 font-mono">{s.label}</span>
               <h3 className="heading-md mb-3">{s.title}</h3>
-              <p className="body-md flex-1 mb-6">{s.description}</p>
+              <p className="body-md flex-1 mb-4">{s.description}</p>
+              <div className="text-xs text-accent-light font-medium mb-6">
+                {s.outcome}
+              </div>
               <div className="flex items-center justify-between pt-5 border-t border-white/[0.04]">
                 <span className="text-sm font-medium text-accent-light">
                   {s.price}

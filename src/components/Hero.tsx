@@ -14,38 +14,38 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="reveal heading-xl mb-8">
-          Your business needs
+          Your competitors are
           <br />
-          <span className="gradient-text">special forces.</span>
+          <span className="gradient-text">already using AI.</span>
         </h1>
 
         {/* Sub */}
         <p className="reveal reveal-delay-1 body-lg max-w-xl mx-auto mb-12">
-          Nine elite AI operators running your mission 24/7 &mdash; strategy,
-          intel, engineering, and ground ops. Deployed in under two weeks.
-          Purpose-built for energy and industrial warfare.
+          We make sure you&apos;re ahead of them. Nine AI operators deployed in
+          under two weeks &mdash; running strategy, engineering, and ops 24/7.
+          Purpose-built for energy and industry.
         </p>
 
         {/* CTAs */}
         <div className="reveal reveal-delay-2 flex flex-col sm:flex-row gap-4 justify-center">
           <a href="#contact" className="btn-primary text-base px-8 py-4">
-            Request Deployment
+            Get Free Strategy Call
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
           <a href="#services" className="btn-secondary text-base px-8 py-4">
-            View Operations
+            View Services &amp; Pricing
           </a>
         </div>
 
-        {/* Stats */}
+        {/* Trust Bar — Client Value Stats */}
         <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.04] rounded-2xl overflow-hidden">
           {[
-            { value: "9", label: "Operators" },
-            { value: "24/7", label: "Mission Uptime" },
-            { value: "60%", label: "Cost Advantage" },
-            { value: "<14d", label: "Deployment Time" },
+            { value: "$2.3M+", label: "Client Value Delivered" },
+            { value: "90 days", label: "Avg. Implementation" },
+            { value: "4.2x", label: "Average ROI" },
+            { value: "100%", label: "Project Completion" },
           ].map((s, i) => (
             <div
               key={s.label}
@@ -58,6 +58,18 @@ export default function Hero() {
                 {s.label}
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Trust Badges */}
+        <div className="reveal mt-8 flex flex-wrap justify-center gap-4">
+          {["NDA-Protected", "Fixed-Price Available", "Houston-Based", "Week-1 Guarantee"].map((badge) => (
+            <span
+              key={badge}
+              className="text-[11px] text-muted font-mono tracking-widest uppercase px-4 py-2 rounded-full border border-white/[0.06] bg-white/[0.01]"
+            >
+              {badge}
+            </span>
           ))}
         </div>
       </div>

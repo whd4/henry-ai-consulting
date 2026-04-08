@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import RevealProvider from "@/components/RevealProvider";
 import "./globals.css";
 
@@ -14,24 +15,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HENRY AI | AI Consulting for Energy & Industry",
+  title: "Henry AI | Enterprise AI Consulting — Houston, TX",
   description:
-    "Houston-based AI consulting firm. We deploy autonomous AI agents that run your operations 24/7 — purpose-built for energy, oil & gas, and industrial companies.",
+    "We help mid-market companies implement AI that delivers measurable ROI in 90 days. Fixed-price engagements. Houston-based, nationwide reach.",
   keywords: [
     "AI consulting Houston",
+    "enterprise AI implementation",
+    "AI strategy consultant",
+    "machine learning consulting",
     "oil and gas AI",
     "workflow automation",
     "AI agents",
     "energy AI consulting",
-    "autonomous agents",
-    "industrial AI",
   ],
   openGraph: {
-    title: "HENRY AI | AI That Works While You Sleep",
+    title: "Henry AI | Enterprise AI Consulting",
     description:
-      "Autonomous AI agents for energy and industrial operations. Houston-based consulting.",
+      "90-day AI implementations. Fixed-price. Measurable ROI.",
+    url: "https://henry-consulting.vercel.app/",
     type: "website",
   },
+  alternates: {
+    canonical: "https://henry-consulting.vercel.app/",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["ProfessionalService", "LocalBusiness"],
+  name: "Henry AI Corporation",
+  description:
+    "Enterprise AI consulting and implementation for mid-market companies",
+  url: "https://henry-consulting.vercel.app",
+  areaServed: ["Houston, TX", "United States"],
+  priceRange: "$$$",
+  serviceType: "AI Consulting",
 };
 
 export default function RootLayout({
@@ -44,8 +62,19 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="noise min-h-full flex flex-col bg-background text-foreground">
         <RevealProvider>{children}</RevealProvider>
+        <Script
+          defer
+          data-domain="henry-consulting.vercel.app"
+          src="https://plausible.io/js/script.js"
+        />
       </body>
     </html>
   );
