@@ -1,33 +1,33 @@
-const services = [
+const operations = [
   {
-    label: "ASSESS",
-    title: "AI Readiness Assessment",
+    label: "RECON",
+    title: "Threat Assessment",
     description:
-      "We audit your workflows, data, and operations to identify where AI agents deliver the highest ROI. You get a prioritized roadmap with projected savings.",
+      "We infiltrate your operations, map every workflow, and identify where you\u2019re losing ground. You get a classified briefing with prioritized targets and projected ROI.",
     price: "$5K \u2013 $15K",
     timeline: "1\u20132 weeks",
   },
   {
-    label: "AUTOMATE",
-    title: "Workflow Automation",
+    label: "STRIKE",
+    title: "Tactical Automation",
     description:
-      "AI-powered automations that replace manual processes. Document processing, report generation, data pipeline management, anomaly detection.",
+      "Surgical strikes on your biggest inefficiencies. We deploy AI operators to eliminate manual processes \u2014 document handling, report generation, anomaly detection, pipeline management.",
     price: "$15K \u2013 $50K",
     timeline: "4\u20138 weeks",
   },
   {
     label: "DEPLOY",
-    title: "Agent Deployment",
+    title: "Full Force Deployment",
     description:
-      "Full-stack AI agent infrastructure. Your own team of autonomous agents monitoring, analyzing, and acting on your behalf \u2014 24/7 at a fraction of headcount cost.",
+      "Your own strike team of autonomous AI operators. Nine agents monitoring, analyzing, and executing on your behalf \u2014 around the clock, at a fraction of headcount cost.",
     price: "$25K \u2013 $100K",
     timeline: "6\u201312 weeks",
   },
   {
-    label: "OPTIMIZE",
-    title: "Ongoing Optimization",
+    label: "COMMAND",
+    title: "Ongoing Command & Control",
     description:
-      "Monthly retainer for continuous AI improvement. We monitor agent performance, add new capabilities, and ensure your systems evolve with your business.",
+      "Monthly retainer for continuous mission optimization. We monitor operator performance, deploy new capabilities, and scale your force as the battlefield evolves.",
     price: "$5K \u2013 $10K/mo",
     timeline: "Ongoing",
   },
@@ -38,28 +38,28 @@ export default function Services() {
     <section id="services" className="py-28 md:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <div className="reveal text-center mb-20">
-          <p className="label mb-4">Services</p>
+          <p className="label mb-4">Operations</p>
           <h2 className="heading-lg">
-            Everything you need.
+            Four levels of
             <br />
-            <span className="gradient-text-warm">Nothing you don&apos;t.</span>
+            <span className="gradient-text-warm">engagement.</span>
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-5">
-          {services.map((s, i) => (
+          {operations.map((s, i) => (
             <div
               key={s.title}
               className={`reveal reveal-delay-${i + 1} card p-8 md:p-10 flex flex-col`}
             >
-              <span className="label mb-5">{s.label}</span>
+              <span className="label mb-5 font-mono">{s.label}</span>
               <h3 className="heading-md mb-3">{s.title}</h3>
               <p className="body-md flex-1 mb-6">{s.description}</p>
               <div className="flex items-center justify-between pt-5 border-t border-white/[0.04]">
                 <span className="text-sm font-medium text-accent-light">
                   {s.price}
                 </span>
-                <span className="text-xs text-muted">{s.timeline}</span>
+                <span className="text-xs text-muted font-mono">{s.timeline}</span>
               </div>
             </div>
           ))}

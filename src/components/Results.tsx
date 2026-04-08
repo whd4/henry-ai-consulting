@@ -1,4 +1,4 @@
-const industries = [
+const sectors = [
   "Oil & Gas Operators",
   "Pipeline Companies",
   "Energy Services",
@@ -14,15 +14,15 @@ export default function Results() {
 
       <div className="mx-auto max-w-6xl px-6">
         <div className="reveal text-center mb-20">
-          <p className="label mb-4">Built for Houston</p>
+          <p className="label mb-4">Theater of Operations</p>
           <h2 className="heading-lg">
-            We understand the
+            Built for the
             <br />
             <span className="gradient-text">energy corridor.</span>
           </h2>
           <p className="body-lg max-w-lg mx-auto mt-5">
-            Our AI solutions are purpose-built for the industries that power the
-            Gulf Coast.
+            We operate in the industries that power the Gulf Coast.
+            Local intel, domain expertise, boots on the ground.
           </p>
         </div>
 
@@ -31,18 +31,18 @@ export default function Results() {
           {[
             {
               stat: "60%",
-              label: "Lower Cost",
-              detail: "Compared to hiring an in-house AI team",
+              label: "Cost Advantage",
+              detail: "vs. assembling an in-house AI team",
             },
             {
               stat: "24/7",
-              label: "Autonomous",
-              detail: "Agents work nights, weekends, and holidays",
+              label: "Always On Duty",
+              detail: "Operators don\u2019t sleep, don\u2019t take leave",
             },
             {
               stat: "14 days",
-              label: "To Deploy",
-              detail: "From discovery call to live production agents",
+              label: "Rapid Deployment",
+              detail: "From first contact to live operators",
             },
           ].map((m, i) => (
             <div
@@ -58,17 +58,17 @@ export default function Results() {
           ))}
         </div>
 
-        {/* Industries */}
+        {/* Sectors */}
         <div className="reveal card p-10 md:p-14">
-          <h3 className="heading-md text-center mb-10">Industries We Serve</h3>
+          <h3 className="heading-md text-center mb-10">Active Sectors</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-y-5 gap-x-8">
-            {industries.map((ind, i) => (
+            {sectors.map((s, i) => (
               <div
-                key={ind}
+                key={s}
                 className={`reveal reveal-delay-${(i % 3) + 1} flex items-center gap-3`}
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                <span className="text-sm text-zinc-300">{ind}</span>
+                <span className="text-sm text-zinc-300">{s}</span>
               </div>
             ))}
           </div>

@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
+  { label: "Operations", href: "#services" },
+  { label: "Protocol", href: "#process" },
+  { label: "Command", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -28,7 +28,7 @@ export default function Nav() {
       <div className="mx-auto max-w-6xl px-6 py-5 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg bg-accent flex items-center justify-center">
-            <span className="text-white text-xs font-bold">H</span>
+            <span className="text-white text-xs font-bold font-mono">H</span>
           </div>
           <span className="text-base font-semibold tracking-tight">
             HENRY AI
@@ -41,7 +41,7 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-muted hover:text-foreground transition-colors duration-300"
+              className="text-sm text-muted hover:text-foreground transition-colors duration-300 font-mono tracking-wide"
             >
               {l.label}
             </a>
@@ -52,7 +52,7 @@ export default function Nav() {
           href="#contact"
           className="hidden md:inline-flex btn-primary text-sm py-2.5 px-5"
         >
-          Get Started
+          Request Deployment
         </a>
 
         {/* Mobile toggle */}
@@ -77,7 +77,7 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-muted hover:text-foreground transition-colors"
+              className="text-muted hover:text-foreground transition-colors font-mono tracking-wide"
               onClick={() => setOpen(false)}
             >
               {l.label}
@@ -88,7 +88,7 @@ export default function Nav() {
             className="btn-primary text-center text-sm"
             onClick={() => setOpen(false)}
           >
-            Get Started
+            Request Deployment
           </a>
         </div>
       )}

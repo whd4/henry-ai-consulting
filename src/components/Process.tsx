@@ -1,27 +1,27 @@
-const steps = [
+const protocol = [
   {
     num: "01",
-    title: "Discovery",
+    title: "Initial Contact",
     description:
-      "30-minute call to understand your operations, pain points, and goals. No sales pitch \u2014 just diagnosis.",
+      "30-minute briefing to assess your situation. We identify the threat landscape \u2014 where you\u2019re exposed, where competitors are gaining ground, and where AI operators can turn the tide.",
   },
   {
     num: "02",
-    title: "Audit & Plan",
+    title: "Intelligence Gathering",
     description:
-      "We map your workflows and identify the highest-ROI automation targets. You get a concrete plan with projected savings.",
+      "Deep recon on your workflows, data, and operations. We build a complete operational picture and deliver a classified action plan with projected impact.",
   },
   {
     num: "03",
-    title: "Build & Deploy",
+    title: "Force Deployment",
     description:
-      "Our agent army builds your solution. AI agents handle development, testing, and deployment \u2014 faster than any traditional team.",
+      "Our agent army builds and deploys your solution. AI operators handle engineering, testing, and activation \u2014 faster than any traditional team could mobilize.",
   },
   {
     num: "04",
-    title: "Monitor & Scale",
+    title: "Sustained Operations",
     description:
-      "Your agents run 24/7. We monitor performance, ship improvements, and scale capabilities as your needs grow.",
+      "Your operators run 24/7 without fatigue, without error. We maintain command and control \u2014 monitoring performance, deploying upgrades, and scaling the force as your mission expands.",
   },
 ];
 
@@ -32,20 +32,20 @@ export default function Process() {
 
       <div className="mx-auto max-w-4xl px-6">
         <div className="reveal text-center mb-20">
-          <p className="label mb-4">Process</p>
+          <p className="label mb-4">Deployment Protocol</p>
           <h2 className="heading-lg">
-            From call to live agents
+            From first contact to
             <br />
-            <span className="gradient-text-warm">in under two weeks.</span>
+            <span className="gradient-text-warm">full operational status.</span>
           </h2>
         </div>
 
         <div className="flex flex-col gap-0">
-          {steps.map((step, i) => (
+          {protocol.map((step, i) => (
             <div
               key={step.num}
               className={`reveal reveal-delay-${i + 1} flex gap-8 md:gap-12 items-start py-10 ${
-                i < steps.length - 1 ? "border-b border-white/[0.04]" : ""
+                i < protocol.length - 1 ? "border-b border-white/[0.04]" : ""
               }`}
             >
               <span className="text-3xl md:text-4xl font-bold gradient-text font-mono shrink-0 w-16 text-right">

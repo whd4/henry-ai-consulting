@@ -5,16 +5,16 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-md bg-accent flex items-center justify-center">
-              <span className="text-white text-[10px] font-bold">H</span>
+              <span className="text-white text-[10px] font-bold font-mono">H</span>
             </div>
             <span className="text-sm font-medium tracking-tight">
               HENRY AI
             </span>
           </div>
 
-          <div className="flex items-center gap-8 text-xs text-muted">
+          <div className="flex items-center gap-8 text-xs text-muted font-mono tracking-wide">
             <span>Houston, TX</span>
-            <span>hello@henryai.com</span>
+            <span>command@henryai.com</span>
           </div>
 
           <p className="text-xs text-zinc-600">

@@ -1,13 +1,13 @@
-const agents = [
-  { name: "NEXUS", role: "Orchestrator", color: "#3b82f6" },
-  { name: "ATLAS", role: "Strategy", color: "#a855f7" },
-  { name: "FORGE", role: "Engineering", color: "#f97316" },
-  { name: "ORACLE", role: "Research", color: "#06b6d4" },
-  { name: "PULSE", role: "Marketing", color: "#ec4899" },
-  { name: "CLOSER", role: "Sales", color: "#22c55e" },
-  { name: "LEDGER", role: "Finance", color: "#eab308" },
-  { name: "SHIELD", role: "Legal", color: "#ef4444" },
-  { name: "ENGINE", role: "Operations", color: "#10b981" },
+const operators = [
+  { name: "NEXUS", role: "Command & Orchestration", rank: "General", color: "#3b82f6" },
+  { name: "ATLAS", role: "Strategic Intelligence", rank: "Colonel", color: "#a855f7" },
+  { name: "FORGE", role: "Combat Engineering", rank: "Major", color: "#f97316" },
+  { name: "ORACLE", role: "Reconnaissance & Intel", rank: "Captain", color: "#06b6d4" },
+  { name: "PULSE", role: "Psychological Operations", rank: "Captain", color: "#ec4899" },
+  { name: "CLOSER", role: "Forward Engagement", rank: "Captain", color: "#22c55e" },
+  { name: "LEDGER", role: "Logistics & Finance", rank: "Lieutenant", color: "#eab308" },
+  { name: "SHIELD", role: "Legal & Compliance", rank: "Lieutenant", color: "#ef4444" },
+  { name: "ENGINE", role: "Field Operations", rank: "Sergeant", color: "#10b981" },
 ];
 
 export default function About() {
@@ -20,51 +20,57 @@ export default function About() {
           {/* Left copy — 3 cols */}
           <div className="md:col-span-3">
             <div className="reveal">
-              <p className="label mb-4">Why HENRY AI</p>
+              <p className="label mb-4">Chain of Command</p>
               <h2 className="heading-lg mb-8">
-                Not another chatbot.
+                Not consultants.
                 <br />
-                <span className="gradient-text-warm">An agent army.</span>
+                <span className="gradient-text-warm">Operators.</span>
               </h2>
             </div>
 
             <div className="reveal reveal-delay-1 flex flex-col gap-5 body-md max-w-lg">
               <p>
-                Most AI consultants sell you a chatbot and call it innovation.
-                We build autonomous agent systems that actually run your
-                operations.
+                Most AI firms send you a chatbot and call it a solution. That&apos;s
+                sending a private where you need a strike team.
               </p>
               <p>
-                Nine specialized AI agents &mdash; strategy, engineering,
-                research, sales, operations, legal, marketing, finance, and a
-                master orchestrator &mdash; each purpose-built for its role.
-                They coordinate, learn, and improve without human intervention.
+                We deploy nine specialized AI operators &mdash; each trained for
+                its role, each running autonomous missions around the clock.
+                Command and orchestration. Strategic intelligence. Combat
+                engineering. Recon. Psyops. Forward engagement. Logistics.
+                Legal cover. Field ops.
               </p>
               <p>
-                Based in Houston. Built for energy. We speak your language
-                because we&apos;re in your industry.
+                They coordinate without human intervention. They learn from
+                every engagement. They never sleep, never quit, never ask
+                for a raise.
+              </p>
+              <p>
+                Based in Houston. Forged for energy. We don&apos;t just understand
+                your industry &mdash; we&apos;re in the trenches with you.
               </p>
             </div>
           </div>
 
-          {/* Right agent list — 2 cols */}
+          {/* Right operator roster — 2 cols */}
           <div className="md:col-span-2">
             <div className="reveal card p-6">
-              <p className="label mb-5 px-2">The Agent Stack</p>
+              <p className="label mb-5 px-2 font-mono">Operator Roster</p>
               <div className="flex flex-col">
-                {agents.map((agent, i) => (
+                {operators.map((op, i) => (
                   <div
-                    key={agent.name}
+                    key={op.name}
                     className={`reveal reveal-delay-${(i % 4) + 1} flex items-center gap-4 py-3 px-3 rounded-xl hover:bg-white/[0.02] transition-colors`}
                   >
                     <div
                       className="w-2 h-2 rounded-full shrink-0"
-                      style={{ backgroundColor: agent.color }}
+                      style={{ backgroundColor: op.color }}
                     />
                     <span className="font-mono text-xs font-semibold w-16 tracking-wide">
-                      {agent.name}
+                      {op.name}
                     </span>
-                    <span className="text-sm text-muted">{agent.role}</span>
+                    <span className="text-xs text-muted flex-1">{op.role}</span>
+                    <span className="text-[10px] text-zinc-600 font-mono">{op.rank}</span>
                   </div>
                 ))}
               </div>
