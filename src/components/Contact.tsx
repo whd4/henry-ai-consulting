@@ -1,10 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => { document.body.removeChild(script); };
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -141,7 +149,7 @@ export default function Contact() {
                 data-url="https://calendly.com/YOUR_USERNAME/discovery?hide_gdpr_banner=1&primary_color=2563eb&background_color=0a0a0f&text_color=f0f0f3"
                 style={{ minWidth: "280px", minHeight: "400px" }}
               />
-              <script src="https://assets.calendly.com/assets/external/widget.js" async />
+{/* Calendly widget.js loaded via useEffect */}
             </div>
           </div>
         </div>

@@ -1,13 +1,13 @@
 const operators = [
-  { name: "NEXUS", role: "Command & Orchestration", rank: "General", color: "#3b82f6" },
-  { name: "ATLAS", role: "Strategic Intelligence", rank: "Colonel", color: "#a855f7" },
-  { name: "FORGE", role: "Combat Engineering", rank: "Major", color: "#f97316" },
-  { name: "ORACLE", role: "Reconnaissance & Intel", rank: "Captain", color: "#06b6d4" },
-  { name: "PULSE", role: "Psychological Operations", rank: "Captain", color: "#ec4899" },
-  { name: "CLOSER", role: "Forward Engagement", rank: "Captain", color: "#22c55e" },
-  { name: "LEDGER", role: "Logistics & Finance", rank: "Lieutenant", color: "#eab308" },
-  { name: "SHIELD", role: "Legal & Compliance", rank: "Lieutenant", color: "#ef4444" },
-  { name: "ENGINE", role: "Field Operations", rank: "Sergeant", color: "#10b981" },
+  { name: "Task Router", role: "Routes work to the right agent, tracks completion", color: "#3b82f6" },
+  { name: "Strategy Advisor", role: "Market analysis, business decisions, opportunity scoring", color: "#a855f7" },
+  { name: "Code Builder", role: "Builds, deploys, tests, and maintains all software", color: "#f97316" },
+  { name: "Research Compiler", role: "Finds data, compiles reports, grows the knowledge base", color: "#06b6d4" },
+  { name: "Content Marketer", role: "Writes content, manages social, runs outreach campaigns", color: "#ec4899" },
+  { name: "Sales Prospector", role: "Finds leads, researches prospects, drafts proposals", color: "#22c55e" },
+  { name: "Deal Modeler", role: "Financial modeling, invoicing, ROI calculations", color: "#eab308" },
+  { name: "Compliance Checker", role: "Legal research, contract review, regulatory compliance", color: "#ef4444" },
+  { name: "Ops Manager", role: "Sprint management, task tracking, system health monitoring", color: "#10b981" },
 ];
 
 export default function About() {
@@ -55,7 +55,7 @@ export default function About() {
           {/* Right operator roster — 2 cols */}
           <div className="md:col-span-2">
             <div className="reveal card p-6">
-              <p className="label mb-5 px-2 font-mono">Operator Roster</p>
+              <p className="label mb-5 px-2 font-mono">AI Team — What Each Agent Does</p>
               <div className="flex flex-col">
                 {operators.map((op, i) => (
                   <div
@@ -66,11 +66,10 @@ export default function About() {
                       className="w-2 h-2 rounded-full shrink-0"
                       style={{ backgroundColor: op.color }}
                     />
-                    <span className="font-mono text-xs font-semibold w-16 tracking-wide">
+                    <span className="font-mono text-xs font-semibold tracking-wide whitespace-nowrap">
                       {op.name}
                     </span>
                     <span className="text-xs text-muted flex-1">{op.role}</span>
-                    <span className="text-[10px] text-zinc-600 font-mono">{op.rank}</span>
                   </div>
                 ))}
               </div>
