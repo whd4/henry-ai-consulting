@@ -1,80 +1,82 @@
-const operations = [
+"use client";
+
+import { motion } from "motion/react";
+
+const capabilities = [
   {
-    label: "AI AUDIT",
-    title: "Find Your Highest-ROI Opportunity",
-    description:
-      "We infiltrate your operations, map every workflow, and identify where AI delivers the biggest impact. You get a prioritized roadmap with projected ROI for each initiative.",
-    price: "$5K",
-    timeline: "2 weeks",
-    outcome: "Know exactly where to invest in AI",
+    title: "Royalty & Production Verification",
+    brief:
+      "High-frequency quantitative analysis of production records, run tickets, and payout statements. Our proprietary models cross-reference operator data against independent measurements to surface discrepancies invisible to manual audit.",
   },
   {
-    label: "AI SPRINT",
-    title: "Working AI Solution, Guaranteed",
-    description:
-      "Pick one high-value problem from the audit. We build, deploy, and validate a production AI solution in 90 days — document automation, anomaly detection, pipeline management, or custom agents.",
-    price: "$25K",
-    timeline: "90 days",
-    outcome: "Live AI system delivering measurable ROI",
+    title: "Forensic Accounting",
+    brief:
+      "Mathematical modeling trained to detect patterns of financial anomaly — skimming, misallocation, unreported deductions. The same computational precision used in institutional quantitative finance, applied to your books.",
   },
   {
-    label: "AI TRANSFORMATION",
-    title: "Enterprise-Wide Implementation",
-    description:
-      "Your own strike team of autonomous AI operators. Nine agents monitoring, analyzing, and executing across your organization — around the clock, at a fraction of headcount cost.",
-    price: "$75K+",
-    timeline: "3–6 months",
-    outcome: "Full AI operations across your business",
+    title: "County, State & Federal Tax Compliance",
+    brief:
+      "Automated compliance verification across all jurisdictions. Severance tax, property tax, income tax — every filing cross-checked against production data and regulatory requirements in real time.",
   },
   {
-    label: "RETAINER",
-    title: "Ongoing Optimization & Support",
-    description:
-      "Monthly engagement for continuous improvement. We monitor AI performance, deploy new capabilities, retrain models, and scale your systems as your business evolves.",
-    price: "$5K–$10K/mo",
-    timeline: "Ongoing",
-    outcome: "AI that gets smarter every month",
+    title: "Will & Trust Disbursement Audit",
+    brief:
+      "Beneficiary payout verification using forensic-grade analysis. We identify calculation errors, undisclosed fees, and distribution anomalies that erode estate value over time.",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-28 md:py-40">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="reveal text-center mb-20">
-          <p className="label mb-4">Services &amp; Pricing</p>
-          <h2 className="heading-lg">
-            Four levels of
-            <br />
-            <span className="gradient-text-warm">engagement.</span>
+    <section id="services" className="relative py-28 md:py-40">
+      <div className="mx-auto max-w-4xl px-6">
+        <motion.div
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-20"
+        >
+          <p className="label mb-6">Capabilities</p>
+          <h2 className="heading-lg gradient-text-warm">
+            Proprietary Analysis
           </h2>
-          <p className="body-lg max-w-lg mx-auto mt-5">
-            Fixed-price. Defined scope. Measurable outcomes.
-            No open-ended consulting bills.
-          </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-5">
-          {operations.map((s, i) => (
-            <div
+        <div className="flex flex-col gap-0">
+          {capabilities.map((s, i) => (
+            <motion.div
               key={s.title}
-              className={`reveal reveal-delay-${i + 1} card p-8 md:p-10 flex flex-col`}
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.8,
+                delay: i * 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="py-10 border-b"
+              style={{ borderColor: "rgba(184, 151, 90, 0.06)" }}
             >
-              <span className="label mb-5 font-mono">{s.label}</span>
-              <h3 className="heading-md mb-3">{s.title}</h3>
-              <p className="body-md flex-1 mb-4">{s.description}</p>
-              <div className="text-xs text-accent-light font-medium mb-6">
-                {s.outcome}
-              </div>
-              <div className="flex items-center justify-between pt-5 border-t border-white/[0.04]">
-                <span className="text-sm font-medium text-accent-light">
-                  {s.price}
-                </span>
-                <span className="text-xs text-muted font-mono">{s.timeline}</span>
-              </div>
-            </div>
+              <h3 className="heading-md mb-4" style={{ color: "#d4c5a0" }}>
+                {s.title}
+              </h3>
+              <p className="body-md max-w-2xl" style={{ color: "#6b5d48" }}>
+                {s.brief}
+              </p>
+            </motion.div>
           ))}
         </div>
+
+        <motion.p
+          initial={false}
+          animate={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="text-center mt-16 text-[10px] tracking-[0.25em] uppercase"
+          style={{ color: "#4a3f30" }}
+        >
+          Methodology details are disclosed under NDA only
+        </motion.p>
       </div>
     </section>
   );

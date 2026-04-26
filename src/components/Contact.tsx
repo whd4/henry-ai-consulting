@@ -1,18 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { motion } from "motion/react";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => { document.body.removeChild(script); };
-  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,7 +19,7 @@ export default function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: "YOUR_ACCESS_KEY_HERE",
-          subject: "New Inquiry — Henry AI Consulting",
+          subject: "Assessment Inquiry — Dwyer Financial Security",
           ...data,
         }),
       });
@@ -39,125 +32,113 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-28 md:py-40">
+    <section id="inquiry" className="py-28 md:py-40">
       <div className="section-divider mb-28 md:mb-40" />
 
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="reveal text-center mb-14">
-          <p className="label mb-4">Get Started</p>
-          <h2 className="heading-lg mb-4">
-            Book a free <span className="gradient-text">strategy call.</span>
+      <div className="mx-auto max-w-lg px-6">
+        <motion.div
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-14"
+        >
+          <p className="label mb-6">Inquiry</p>
+          <h2 className="heading-lg mb-4 gradient-text-warm">
+            Request Assessment
           </h2>
-          <p className="body-md">
-            30-minute call. No obligation. No sales pitch.
-            Just a situation assessment and honest recommendations.
+          <p className="body-md" style={{ color: "#6b5d48" }}>
+            All inquiries are confidential. We respond within 48 hours
+            to qualified submissions.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Contact Form */}
-          <div className="reveal reveal-delay-1 card p-8 md:p-10">
-            <h3 className="heading-md mb-6">Send a message</h3>
-            {submitted ? (
-              <div className="text-center py-12">
-                <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-5">
-                  <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="heading-md mb-2">Message received.</h3>
-                <p className="body-md">
-                  We&apos;ll reach out within 24 hours.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <div className="grid md:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="name" className="block text-xs text-muted mb-2 tracking-widest font-mono uppercase">
-                      Name
-                    </label>
-                    <input id="name" name="name" type="text" required className="input" placeholder="Your name" />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-xs text-muted mb-2 tracking-widest font-mono uppercase">
-                      Email
-                    </label>
-                    <input id="email" name="email" type="email" required className="input" placeholder="you@company.com" />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-xs text-muted mb-2 tracking-widest font-mono uppercase">
-                    Organization
-                  </label>
-                  <input id="company" name="company" type="text" className="input" placeholder="Company name" />
-                </div>
-
-                <div>
-                  <label htmlFor="budget" className="block text-xs text-muted mb-2 tracking-widest font-mono uppercase">
-                    Budget Range
-                  </label>
-                  <select id="budget" name="budget" className="input">
-                    <option value="5k-25k">$5K – $25K</option>
-                    <option value="25k-75k">$25K – $75K</option>
-                    <option value="75k+">$75K+</option>
-                    <option value="unsure">Not sure yet</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-xs text-muted mb-2 tracking-widest font-mono uppercase">
-                    What are you trying to solve?
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    className="input resize-none"
-                    placeholder="Describe your current challenge..."
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="btn-primary w-full py-4 text-base mt-2 disabled:opacity-50"
-                >
-                  {loading ? "Sending..." : "Get Free Strategy Call"}
-                  {!loading && (
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  )}
-                </button>
-              </form>
-            )}
-          </div>
-
-          {/* Calendly Embed */}
-          <div className="reveal reveal-delay-2 card p-8 md:p-10 flex flex-col">
-            <h3 className="heading-md mb-6">Or book directly</h3>
-            <p className="body-md mb-6">
-              Pick a time that works for you. 30-minute discovery call.
-            </p>
-            <div className="flex-1 min-h-[400px] rounded-xl overflow-hidden bg-white/[0.02] flex items-center justify-center">
-              {/* Replace YOUR_USERNAME with your Calendly username */}
+        <motion.div
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="card p-8 md:p-10"
+        >
+          {submitted ? (
+            <motion.div
+              initial={false}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-12"
+            >
               <div
-                className="calendly-inline-widget w-full h-full"
-                data-url="https://calendly.com/YOUR_USERNAME/discovery?hide_gdpr_banner=1&primary_color=2563eb&background_color=0a0a0f&text_color=f0f0f3"
-                style={{ minWidth: "280px", minHeight: "400px" }}
-              />
-{/* Calendly widget.js loaded via useEffect */}
-            </div>
-          </div>
-        </div>
+                className="w-12 h-12 mx-auto mb-5 flex items-center justify-center"
+                style={{ border: "1px solid rgba(184, 151, 90, 0.3)" }}
+              >
+                <svg className="w-5 h-5" style={{ color: "#b8975a" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="heading-md mb-2">Inquiry received.</h3>
+              <p className="body-md" style={{ color: "#6b5d48" }}>
+                A representative will contact you within 48 hours.
+              </p>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <div>
+                <label htmlFor="name" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#6b5d48" }}>
+                  Name
+                </label>
+                <input id="name" name="name" type="text" required className="input" placeholder="" />
+              </div>
 
-        <p className="reveal text-center text-xs text-muted mt-8">
-          Direct line:{" "}
-          <span className="text-zinc-400">command@henryai.com</span>
-        </p>
+              <div>
+                <label htmlFor="email" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#6b5d48" }}>
+                  Email
+                </label>
+                <input id="email" name="email" type="email" required className="input" placeholder="" />
+              </div>
+
+              <div>
+                <label htmlFor="concern" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#6b5d48" }}>
+                  Nature of Concern
+                </label>
+                <select id="concern" name="concern" className="input">
+                  <option value="">Select...</option>
+                  <option value="royalty">Royalty / Production Payout</option>
+                  <option value="forensic">Forensic Accounting</option>
+                  <option value="tax">Tax Compliance</option>
+                  <option value="trust">Will & Trust Disbursement</option>
+                  <option value="security">Network / Financial Security</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#6b5d48" }}>
+                  Brief Description
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  className="input resize-none"
+                  required
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                disabled={loading}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                className="btn-primary w-full py-4 text-sm mt-2 disabled:opacity-50"
+              >
+                {loading ? "Sending..." : "Submit Inquiry"}
+              </motion.button>
+
+              <p className="text-center text-[9px] tracking-[0.2em] uppercase" style={{ color: "#4a3f30" }}>
+                All information is held in strict confidence
+              </p>
+            </form>
+          )}
+        </motion.div>
       </div>
     </section>
   );

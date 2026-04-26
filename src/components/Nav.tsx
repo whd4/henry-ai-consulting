@@ -1,16 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "motion/react";
+import Mascot from "./Mascot";
 
 const links = [
-  { label: "Operations", href: "#services" },
-  { label: "Protocol", href: "#process" },
-  { label: "Command", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Capabilities", href: "#services" },
+  { label: "The System", href: "#about" },
+  { label: "Inquiry", href: "#inquiry" },
 ];
 
 export default function Nav() {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,18 +20,22 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav
+    <motion.nav
+      initial={false}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "glass-nav" : ""
       }`}
     >
-      <div className="mx-auto max-w-6xl px-6 py-5 flex items-center justify-between">
+      <div className="mx-auto max-w-5xl px-6 py-5 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-accent flex items-center justify-center">
-            <span className="text-white text-xs font-bold font-mono">H</span>
-          </div>
-          <span className="text-base font-semibold tracking-tight">
-            HENRY AI
+          <Mascot size={32} />
+          <span
+            className="text-sm font-semibold tracking-[0.15em] uppercase"
+            style={{ fontFamily: "var(--font-cinzel), Cinzel, serif", color: "#b8975a" }}
+          >
+            DFS
           </span>
         </a>
 
@@ -41,7 +45,10 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-muted hover:text-foreground transition-colors duration-300 font-mono tracking-wide"
+              className="text-[11px] tracking-[0.15em] uppercase transition-colors duration-300"
+              style={{ fontFamily: "var(--font-cinzel), Cinzel, serif", color: "#6b5d48" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#b8975a")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#6b5d48")}
             >
               {l.label}
             </a>
@@ -49,49 +56,12 @@ export default function Nav() {
         </div>
 
         <a
-          href="#contact"
-          className="hidden md:inline-flex btn-primary text-sm py-2.5 px-5"
+          href="#inquiry"
+          className="hidden md:inline-flex btn-primary text-[10px] py-2.5 px-6"
         >
-          Request Deployment
+          Request Assessment
         </a>
-
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden text-muted"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
       </div>
-
-      {open && (
-        <div className="md:hidden glass-nav border-t border-white/[0.04] px-6 py-6 flex flex-col gap-5">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-muted hover:text-foreground transition-colors font-mono tracking-wide"
-              onClick={() => setOpen(false)}
-            >
-              {l.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            className="btn-primary text-center text-sm"
-            onClick={() => setOpen(false)}
-          >
-            Request Deployment
-          </a>
-        </div>
-      )}
-    </nav>
+    </motion.nav>
   );
 }

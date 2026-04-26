@@ -1,24 +1,21 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.04] py-14">
-      <div className="mx-auto max-w-6xl px-6">
+    <footer className="py-14" style={{ borderTop: "1px solid rgba(184, 151, 90, 0.06)" }}>
+      <div className="mx-auto max-w-5xl px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-accent flex items-center justify-center">
-              <span className="text-white text-[10px] font-bold font-mono">H</span>
-            </div>
-            <span className="text-sm font-medium tracking-tight">
-              HENRY AI
-            </span>
-          </div>
+          <span
+            className="text-xs tracking-[0.15em] uppercase"
+            style={{ fontFamily: "var(--font-cinzel), Cinzel, serif", color: "#b8975a" }}
+          >
+            Dwyer Financial Security
+          </span>
 
-          <div className="flex items-center gap-8 text-xs text-muted font-mono tracking-wide">
-            <span>Houston, TX</span>
-            <span>command@henryai.com</span>
-          </div>
+          <span className="text-[9px] tracking-[0.2em] uppercase" style={{ color: "#4a3f30" }}>
+            Houston, Texas
+          </span>
 
-          <p className="text-xs text-zinc-600">
-            &copy; {new Date().getFullYear()} HENRY AI Corporation
+          <p className="text-[9px]" style={{ color: "#3a3025" }}>
+            &copy; {new Date().getFullYear()} Dwyer Financial Security. All rights reserved.
           </p>
         </div>
       </div>

@@ -1,27 +1,31 @@
+"use client";
+
+import { motion } from "motion/react";
+
 const protocol = [
   {
     num: "01",
-    title: "Initial Contact",
+    title: "HELIX Audit",
     description:
-      "30-minute briefing to assess your situation. We identify the threat landscape \u2014 where you\u2019re exposed, where competitors are gaining ground, and where AI operators can turn the tide.",
+      "We deploy the HELIX Methodology across your operations. Six dimensions analyzed. Every workflow scored. You receive your HELIX Score and a prioritized AI roadmap in 2 weeks.",
   },
   {
     num: "02",
-    title: "Intelligence Gathering",
+    title: "Architecture Design",
     description:
-      "Deep recon on your workflows, data, and operations. We build a complete operational picture and deliver a classified action plan with projected impact.",
+      "We blueprint the exact AI integration — what connects to what, how data flows, where agents deploy. No guesswork. Every decision backed by your HELIX data.",
   },
   {
     num: "03",
-    title: "Force Deployment",
+    title: "Rapid Deployment",
     description:
-      "Our agent army builds and deploys your solution. AI operators handle engineering, testing, and activation \u2014 faster than any traditional team could mobilize.",
+      "Our agent army builds and deploys your solution. AI operators handle engineering, testing, and activation — faster than any traditional team could mobilize.",
   },
   {
     num: "04",
-    title: "Sustained Operations",
+    title: "Continuous Evolution",
     description:
-      "Your operators run 24/7 without fatigue, without error. We maintain command and control \u2014 monitoring performance, deploying upgrades, and scaling the force as your mission expands.",
+      "Your AI operators run 24/7 without fatigue. We monitor performance, deploy upgrades, and scale systems. Each month, your HELIX Score improves.",
   },
 ];
 
@@ -31,20 +35,34 @@ export default function Process() {
       <div className="section-divider mb-28 md:mb-40" />
 
       <div className="mx-auto max-w-4xl px-6">
-        <div className="reveal text-center mb-20">
+        <motion.div
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-20"
+        >
           <p className="label mb-4">Deployment Protocol</p>
           <h2 className="heading-lg">
-            From first contact to
+            From HELIX Audit to
             <br />
             <span className="gradient-text-warm">full operational status.</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="flex flex-col gap-0">
           {protocol.map((step, i) => (
-            <div
+            <motion.div
               key={step.num}
-              className={`reveal reveal-delay-${i + 1} flex gap-8 md:gap-12 items-start py-10 ${
+              initial={false}
+              animate={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.12,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className={`flex gap-8 md:gap-12 items-start py-10 ${
                 i < protocol.length - 1 ? "border-b border-white/[0.04]" : ""
               }`}
             >
@@ -55,7 +73,7 @@ export default function Process() {
                 <h3 className="heading-md mb-2">{step.title}</h3>
                 <p className="body-md max-w-lg">{step.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

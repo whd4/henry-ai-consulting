@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Cinzel } from "next/font/google";
 import Script from "next/script";
-import RevealProvider from "@/components/RevealProvider";
+import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,24 +15,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "Henry AI | Enterprise AI Consulting — Houston, TX",
+  title: "Dwyer Financial Security",
   description:
-    "We help mid-market companies implement AI that delivers measurable ROI in 90 days. Fixed-price engagements. Houston-based, nationwide reach.",
+    "Proprietary AI-driven forensic analysis for royalty payouts, production accounting, tax compliance, and trust disbursements. Houston, TX.",
   keywords: [
-    "AI consulting Houston",
-    "enterprise AI implementation",
-    "AI strategy consultant",
-    "machine learning consulting",
-    "oil and gas AI",
-    "workflow automation",
-    "AI agents",
-    "energy AI consulting",
+    "forensic accounting Houston",
+    "royalty payout audit",
+    "production accounting AI",
+    "oil gas royalty verification",
+    "trust disbursement audit",
+    "financial anomaly detection",
+    "tax compliance audit",
   ],
   openGraph: {
-    title: "Henry AI | Enterprise AI Consulting",
+    title: "Dwyer Financial Security",
     description:
-      "90-day AI implementations. Fixed-price. Measurable ROI.",
+      "Proprietary mathematical modeling. Forensic precision. Anomaly detection.",
     url: "https://henry-consulting.vercel.app/",
     type: "website",
   },
@@ -43,13 +49,13 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": ["ProfessionalService", "LocalBusiness"],
-  name: "Henry AI Corporation",
+  name: "Dwyer Financial Security",
   description:
-    "Enterprise AI consulting and implementation for mid-market companies",
+    "AI-driven forensic financial analysis and anomaly detection",
   url: "https://henry-consulting.vercel.app",
   areaServed: ["Houston, TX", "United States"],
-  priceRange: "$$$",
-  serviceType: "AI Consulting",
+  priceRange: "$$$$",
+  serviceType: "Forensic Financial Analysis",
 };
 
 export default function RootLayout({
@@ -60,7 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} h-full antialiased`}
     >
       <head>
         <script
@@ -68,8 +74,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="noise min-h-full flex flex-col bg-background text-foreground">
-        <RevealProvider>{children}</RevealProvider>
+      <body className="noise min-h-full flex flex-col" style={{ background: "#050301", color: "#d4c5a0" }}>
+        <SmoothScroll>{children}</SmoothScroll>
         <Script
           defer
           data-domain="henry-consulting.vercel.app"
