@@ -23,6 +23,16 @@ const capabilities = [
     brief:
       "Beneficiary payout verification using forensic-grade analysis. We identify calculation errors, undisclosed fees, and distribution anomalies that erode estate value over time.",
   },
+  {
+    title: "Royalty Tokenization Advisory",
+    brief:
+      "Strategic counsel for operators and mineral owners considering fractional tokenization of royalty interests. We bring four generations of Texas operator experience to a market currently navigated only by fintech outsiders. Coverage spans regulatory positioning post-SEC Innovation Exemption, valuation models for fractional offerings, and operator-side execution.",
+  },
+  {
+    title: "RWA Domain Expertise for Tokenization Platforms",
+    brief:
+      "Operator-side advisory for tokenization platforms building RWA infrastructure. Our team provides the upstream domain knowledge — RRC familiarity, lease and royalty mechanics, operator workflows — that distinguishes platforms with genuine market fit from speculative scaffolding.",
+  },
 ];
 
 export default function Services() {
