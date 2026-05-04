@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HENRY · Royalty Tokenization · Live Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --panel: #141210;
+    --panel-2: #1c1815;
+    --gold: #d4c5a0;
+    --gold-bright: #f4e9d8;
+    --warm: #6b5d48;
+    --warm-dim: #4a3f30;
+    --line: rgba(184, 151, 90, 0.15);
+    --green: #a3d9a3;
+    --red: #d97a7a;
+    --amber: #f5c14d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--gold-bright);
+    font-family: 'Georgia', 'Garamond', serif;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background: radial-gradient(ellipse at top, rgba(212, 197, 160, 0.04), transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .brand { color: var(--gold); font-size: 13px; letter-spacing: 4px; text-transform: uppercase; }
+  h1 {
+    font-family: 'Georgia', serif; font-weight: 400; font-size: 44px; letter-spacing: 1px;
+    color: var(--gold-bright); margin-top: 6px;
+  }
+  .subtitle { color: var(--warm); font-size: 14px; margin-top: 4px; font-style: italic; }
+  .badges { display: flex; gap: 10px; flex-wrap: wrap; }
+  .badge {
+    padding: 6px 12px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    border: 1px solid var(--line); color: var(--gold); background: var(--panel);
+  }
+  .badge.live { color: var(--green); border-color: var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 50% { opacity: .6; } }
+
+  /* GRID */
+  .grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+  /* PANELS */
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 28px 32px;
+    border-radius: 4px;
+  }
+  .panel h2 {
+    font-family: 'Georgia', serif; font-weight: 400; font-size: 22px;
+    color: var(--gold); letter-spacing: 1px;
+    border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 20px;
+  }
+  .panel h2 .step { color: var(--warm); font-size: 11px; letter-spacing: 2px; }
+
+  /* ASSET CARD */
+  .asset {
+    background: var(--panel-2);
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .asset .name { color: var(--gold-bright); font-size: 18px; font-style: italic; }
+  .asset .meta { color: var(--warm); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+  .asset .value { color: var(--gold); font-size: 32px; font-family: 'Georgia', serif; margin-top: 8px; }
+  .asset .value-detail { color: var(--warm); font-size: 12px; }
+
+  .row {
+    display: flex; justify-content: space-between; padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .row:last-child { border: none; }
+  .row .k { color: var(--warm); letter-spacing: 1px; text-transform: uppercase; font-size: 11px; }
+  .row .v { color: var(--gold-bright); font-family: 'Consolas', monospace; }
+
+  /* BUTTON */
+  .cta {
+    display: inline-block; margin-top: 16px;
+    background: transparent; color: var(--gold);
+    border: 1px solid var(--gold); padding: 12px 28px;
+    font-family: inherit; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: all .2s;
+  }
+  .cta:hover { background: var(--gold); color: var(--bg); }
+  .cta:disabled { opacity: .4; cursor: not-allowed; }
+  .cta.primary { background: var(--gold); color: var(--bg); }
+  .cta.primary:hover { background: var(--gold-bright); }
+
+  /* TOKEN GRID */
+  .token-vis {
+    display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px;
+    margin: 16px 0; padding: 16px; background: #050505; border-radius: 2px;
+  }
+  .token {
+    aspect-ratio: 1; background: var(--warm-dim);
+    border-radius: 2px; transition: all .3s;
+  }
+  .token.minted { background: var(--gold); box-shadow: 0 0 8px rgba(212, 197, 160, 0.6); }
+  .token.distributed { background: var(--green); box-shadow: 0 0 8px rgba(163, 217, 163, 0.6); }
+
+  /* HOLDER LIST */
+  .holders {
+    margin-top: 16px;
+    max-height: 280px; overflow-y: auto;
+  }
+  .holders::-webkit-scrollbar { width: 4px; }
+  .holders::-webkit-scrollbar-thumb { background: var(--gold); }
+  .holder {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; margin-bottom: 6px;
+    background: var(--panel-2); border-left: 2px solid transparent;
+    transition: all .2s;
+  }
+  .holder.receiving { border-left-color: var(--green); background: rgba(163, 217, 163, 0.05); }
+  .holder .addr { font-family: 'Consolas', monospace; color: var(--gold); font-size: 12px; }
+  .holder .amount { color: var(--gold-bright); font-size: 13px; }
+  .holder .payout {
+    color: var(--green); font-family: 'Consolas', monospace; font-size: 11px;
+    opacity: 0; transition: opacity .3s;
+  }
+  .holder.receiving .payout { opacity: 1; }
+
+  /* LIVE TICKER */
+  .ticker {
+    background: #050505;
+    border: 1px solid var(--line);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-family: 'Consolas', monospace;
+    font-size: 12px; color: var(--green);
+    height: 220px; overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+  .ticker::-webkit-scrollbar { width: 4px; }
+  .ticker::-webkit-scrollbar-thumb { background: var(--green); }
+  .ticker .tick { padding: 4px 0; opacity: 0; animation: fadeIn .3s forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .ticker .ts { color: var(--warm); margin-right: 10px; }
+  .ticker .green { color: var(--green); }
+  .ticker .gold { color: var(--gold); }
+  .ticker .amber { color: var(--amber); }
+
+  /* COMPLIANCE */
+  .compliance { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .compliance-item {
+    padding: 12px 16px; background: var(--panel-2);
+    border-left: 2px solid var(--gold);
+  }
+  .compliance-item .label { color: var(--warm); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .compliance-item .value { color: var(--gold-bright); font-size: 13px; }
+
+  /* CONTRACT */
+  .contract {
+    background: #050505; padding: 16px 20px;
+    border: 1px dashed var(--line);
+    font-family: 'Consolas', monospace; font-size: 11px;
+    color: var(--warm); margin-top: 16px;
+  }
+  .contract .h { color: var(--gold); margin-bottom: 6px; }
+  .contract .addr-full { color: var(--green); word-break: break-all; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 48px; padding-top: 24px;
+    border-top: 1px solid var(--line);
+    text-align: center; color: var(--warm); font-size: 11px; letter-spacing: 2px;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div>
+      <div class="brand">HENRY AI CORPORATION</div>
+      <h1>Royalty Tokenization Demo</h1>
+      <div class="subtitle">A live walkthrough of a single Texas royalty interest, fractionalized on-chain and distributed.</div>
+    </div>
+    <div class="badges">
+      <div class="badge live">● LIVE SIMULATION</div>
+      <div class="badge">SEC INNOVATION EXEMPTION · APR 2026</div>
+      <div class="badge">REG D 506(c) · ACCREDITED ONLY</div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <div class="panel" style="margin-bottom: 24px;">
+    <h2>Walk-through · what you are looking at</h2>
+    <p style="color: var(--warm); margin-bottom: 12px;">This is a working simulation of how a single oil & gas royalty interest is tokenized, distributed to qualified buyers, and how royalty payments flow back to holders pro rata. <span style="color: var(--gold-bright);">Every action below is live-rendered; click the buttons to advance the cycle.</span></p>
+    <p style="color: var(--warm); font-size: 13px; font-style: italic;">In the real platform, each step is signed by your operator, custodied by Anchorage Digital, and routed via Securitize broker-dealer. This demo runs offline and uses simulated wallet addresses + payouts so you can show it on a tablet without a network connection.</p>
+  </div>
+
+  <!-- TWO COLUMN MAIN CONTENT -->
+  <div class="grid">
+
+    <!-- LEFT: THE ASSET -->
+    <div class="panel">
+      <h2><span class="step">STEP 1</span> &nbsp; The Asset</h2>
+
+      <div class="asset">
+        <div class="name">"Lusk-Hartwell #4 — Producing Royalty"</div>
+        <div class="meta">Reeves County, TX · Wolfcamp · 25% RI</div>
+        <div class="value" id="assetValue">$487,500</div>
+        <div class="value-detail">Net Present Value · 8% discount · 10-year horizon</div>
+      </div>
+
+      <div class="row"><span class="k">Operator</span><span class="v">Diamondback Energy</span></div>
+      <div class="row"><span class="k">Decimal interest</span><span class="v">0.0312500</span></div>
+      <div class="row"><span class="k">Avg monthly payout</span><span class="v">$5,825</span></div>
+      <div class="row"><span class="k">Last 12 months production</span><span class="v">412,000 BOE</span></div>
+      <div class="row"><span class="k">RRC API</span><span class="v">42-389-XXXXX</span></div>
+      <div class="row"><span class="k">Status</span><span class="v" style="color: var(--green);">PRODUCING · GOOD STANDING</span></div>
+
+      <div class="contract">
+        <div class="h">SMART CONTRACT (Base mainnet — simulated)</div>
+        <div class="addr-full" id="contractAddr">0x7F4e9c0a8B3D5E2F1A6C9D8B7E4F3A2C1D5E8F9B</div>
+      </div>
+
+      <div class="compliance">
+        <div class="compliance-item">
+          <div class="label">Custody</div>
+          <div class="value">Anchorage Digital</div>
+        </div>
+        <div class="compliance-item">
+          <div class="label">Distribution</div>
+          <div class="value">Securitize Broker-Dealer</div>
+        </div>
+        <div class="compliance-item">
+          <div class="label">Banking Rails</div>
+          <div class="value">Erebor Bank (USDC)</div>
+        </div>
+        <div class="compliance-item">
+          <div class="label">Compliance Counsel</div>
+          <div class="value">Texas O&G Securities</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: TOKENIZATION -->
+    <div class="panel">
+      <h2><span class="step">STEP 2</span> &nbsp; Tokenize</h2>
+
+      <p style="color: var(--warm); margin-bottom: 8px; font-size: 13px;">Mint <strong style="color: var(--gold-bright);">100 ERC-1155 tokens</strong>, each representing 1% of the royalty interest. Token holders receive their pro-rata share of monthly royalty payouts.</p>
+
+      <div class="row"><span class="k">Tokens to mint</span><span class="v">100</span></div>
+      <div class="row"><span class="k">Price per token</span><span class="v">$4,875</span></div>
+      <div class="row"><span class="k">Total raise</span><span class="v">$487,500</span></div>
+      <div class="row"><span class="k">Operator retains</span><span class="v">0% (full liquidation) — adjustable</span></div>
+
+      <button class="cta primary" id="mintBtn" onclick="mintTokens()">▶ MINT 100 TOKENS</button>
+      <button class="cta" id="distributeBtn" onclick="distributeTokens()" disabled>▶ DISTRIBUTE TO BUYERS</button>
+
+      <div class="token-vis" id="tokenVis"></div>
+
+      <p style="color: var(--warm); font-size: 11px; text-align: center; letter-spacing: 1px;">
+        <span style="color: var(--warm-dim);">▣</span> UNMINTED &nbsp;
+        <span style="color: var(--gold);">▣</span> MINTED &nbsp;
+        <span style="color: var(--green);">▣</span> DISTRIBUTED
+      </p>
+    </div>
+
+    <!-- LEFT: HOLDERS -->
+    <div class="panel">
+      <h2><span class="step">STEP 3</span> &nbsp; Token Holders</h2>
+      <p style="color: var(--warm); margin-bottom: 8px; font-size: 13px;">After distribution, 8 accredited investors hold fractional interests. Smaller investors can hold 1 token; larger family offices can hold 20+.</p>
+      <div class="holders" id="holderList">
+        <p style="color: var(--warm-dim); text-align: center; padding: 60px 0; font-style: italic;">Distribute tokens to populate holder roster</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: LIVE PAYOUTS -->
+    <div class="panel">
+      <h2><span class="step">STEP 4</span> &nbsp; Live Payout Flow</h2>
+      <p style="color: var(--warm); margin-bottom: 8px; font-size: 13px;">Every monthly royalty check from the operator is auto-distributed pro-rata to all token holders, on-chain, via USDC stablecoin.</p>
+
+      <button class="cta" id="payoutBtn" onclick="startPayouts()" disabled>▶ START MONTHLY PAYOUTS</button>
+      <button class="cta" id="stopBtn" onclick="stopPayouts()" disabled>⏸ PAUSE</button>
+
+      <div class="ticker" id="ticker">
+        <div class="tick"><span class="ts">[wait]</span> Distribute tokens first, then start payouts.</div>
+      </div>
+
+      <div class="row"><span class="k">Total distributed</span><span class="v" id="totalDist">$0</span></div>
+      <div class="row"><span class="k">Cycles complete</span><span class="v" id="cycleCount">0</span></div>
+      <div class="row"><span class="k">Avg per cycle</span><span class="v">$5,825 / 100 tokens = $58.25/token</span></div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM: VALUE PROPOSITION -->
+  <div class="panel" style="margin-top: 24px;">
+    <h2>Why this matters · in one sentence per stakeholder</h2>
+    <div class="grid">
+      <div>
+        <p style="color: var(--gold); font-size: 14px; margin-bottom: 8px;"><strong>For the mineral owner:</strong></p>
+        <p style="color: var(--warm); font-size: 13px;">You converted a $487K illiquid asset into $487K cash today, while the buyers take all future production risk and reward. Or you can sell 60% and keep 40% upside — your choice.</p>
+      </div>
+      <div>
+        <p style="color: var(--gold); font-size: 14px; margin-bottom: 8px;"><strong>For the operator:</strong></p>
+        <p style="color: var(--warm); font-size: 13px;">Same operator, same lease, same RRC filings. Tokenization changes who receives the royalty check — not who operates the well. Zero operational impact.</p>
+      </div>
+      <div>
+        <p style="color: var(--gold); font-size: 14px; margin-bottom: 8px;"><strong>For the buyer:</strong></p>
+        <p style="color: var(--warm); font-size: 13px;">Fractional access to a yield-bearing real-world asset, settled in seconds, transparent payout flow, no traditional broker.</p>
+      </div>
+      <div>
+        <p style="color: var(--gold); font-size: 14px; margin-bottom: 8px;"><strong>For HENRY:</strong></p>
+        <p style="color: var(--warm); font-size: 13px;">Advisory fee on the structuring (1-3%) + recurring annual platform fee on AUT (0.5-1.5%). Aligned with the asset performing well.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    HENRY AI CORPORATION &nbsp;·&nbsp; Wm. H. Dwyer IV &nbsp;·&nbsp; <a href="https://henry-consulting.vercel.app">henry-consulting.vercel.app</a> &nbsp;·&nbsp; Houston, TX
+    <br><br>
+    <span style="font-size: 10px;">DEMO ONLY — simulation runs entirely in your browser, no network calls, no real assets at risk. Production deployment uses Anchorage Digital custody, Securitize broker-dealer, and Erebor stablecoin rails.</span>
+  </footer>
+
+</div>
+
+<script>
+// ========== STATE ==========
+let mintedCount = 0;
+let distributedCount = 0;
+let payoutInterval = null;
+let cycleNum = 0;
+let totalDistributed = 0;
+
+// 8 simulated holders
+const HOLDERS = [
+  { addr: '0x4F8e...A3B2', name: 'Permian Family Trust',     tokens: 24 },
+  { addr: '0x7C2d...9F1E', name: 'Houston Yield Capital',    tokens: 18 },
+  { addr: '0x9A5c...B6D8', name: 'Roberts Mineral Partners', tokens: 15 },
+  { addr: '0x2E8b...4C7A', name: 'Bonner Family Office',     tokens: 12 },
+  { addr: '0xB1F4...8E3C', name: 'Tudor Energy Income Fund', tokens: 11 },
+  { addr: '0x5D9a...2F6B', name: 'Galveston Bay Holdings',   tokens: 10 },
+  { addr: '0x3C7e...1A8D', name: 'individual: J. Whitten',   tokens: 6 },
+  { addr: '0x8B4f...E5C9', name: 'individual: M. Hartwell',  tokens: 4 },
+];
+
+// ========== TOKEN VIS ==========
+function buildTokenVis() {
+  const v = document.getElementById('tokenVis');
+  v.innerHTML = '';
+  for (let i = 0; i < 100; i++) {
+    const t = document.createElement('div');
+    t.className = 'token';
+    t.dataset.idx = i;
+    v.appendChild(t);
+  }
+}
+
+// ========== ACTIONS ==========
+function mintTokens() {
+  const tokens = document.querySelectorAll('.token');
+  let i = 0;
+  document.getElementById('mintBtn').disabled = true;
+  log('gold', `[MINT] Issuing 100 tokens to escrow contract 0x7F4e...8F9B...`);
+  const intv = setInterval(() => {
+    if (i >= tokens.length) {
+      clearInterval(intv);
+      document.getElementById('distributeBtn').disabled = false;
+      log('green', `[MINT] ✓ 100 tokens minted. Total supply: 100. Awaiting distribution.`);
+      mintedCount = 100;
+      return;
+    }
+    tokens[i].classList.add('minted');
+    i++;
+  }, 20);
+}
+
+function distributeTokens() {
+  document.getElementById('distributeBtn').disabled = true;
+  log('gold', `[DIST] Beginning distribution to 8 KYC'd accredited buyers...`);
+  let tokenIdx = 0;
+  const tokens = document.querySelectorAll('.token');
+  HOLDERS.forEach((h, hi) => {
+    setTimeout(() => {
+      log('green', `[DIST] → ${h.tokens} tokens → ${h.name} <span class="gold">(${h.addr})</span>`);
+      for (let i = 0; i < h.tokens; i++) {
+        if (tokens[tokenIdx]) tokens[tokenIdx].classList.add('distributed');
+        tokenIdx++;
+      }
+      // populate holder list
+      if (hi === 0) document.getElementById('holderList').innerHTML = '';
+      const card = document.createElement('div');
+      card.className = 'holder';
+      card.dataset.idx = hi;
+      card.innerHTML = `
+        <div>
+          <div style="color: var(--gold-bright); font-size: 13px;">${h.name}</div>
+          <div class="addr">${h.addr}</div>
+        </div>
+        <div style="text-align: right;">
+          <div class="amount">${h.tokens} tokens</div>
+          <div class="payout" data-payout-idx="${hi}">+$0.00</div>
+        </div>`;
+      document.getElementById('holderList').appendChild(card);
+      if (hi === HOLDERS.length - 1) {
+        document.getElementById('payoutBtn').disabled = false;
+        log('green', `[DIST] ✓ All 100 tokens distributed. Holders registered. Ready to receive payouts.`);
+        document.getElementById('ticker').innerHTML = '<div class="tick"><span class="ts">[ready]</span> Click START MONTHLY PAYOUTS to begin.</div>';
+      }
+    }, hi * 400);
+  });
+}
+
+function startPayouts() {
+  document.getElementById('payoutBtn').disabled = true;
+  document.getElementById('stopBtn').disabled = false;
+  doPayoutCycle();
+  payoutInterval = setInterval(doPayoutCycle, 4500);
+}
+
+function stopPayouts() {
+  clearInterval(payoutInterval); payoutInterval = null;
+  document.getElementById('payoutBtn').disabled = false;
+  document.getElementById('stopBtn').disabled = true;
+  log('amber', `[CYCLE] Paused.`);
+}
+
+function doPayoutCycle() {
+  cycleNum++;
+  // royalty fluctuates ±15% each month
+  const monthly = 5825 * (0.85 + Math.random() * 0.30);
+  log('gold', `═══ MONTH ${cycleNum} · royalty payout ${dollars(monthly)} from operator → escrow contract`);
+
+  let i = 0;
+  const distInt = setInterval(() => {
+    if (i >= HOLDERS.length) {
+      clearInterval(distInt);
+      log('green', `[CYCLE] ✓ Cycle ${cycleNum} complete. Total distributed lifetime: ${dollars(totalDistributed)}`);
+      document.getElementById('cycleCount').textContent = cycleNum;
+      document.getElementById('totalDist').textContent = dollars(totalDistributed);
+      // clear receiving glows
+      setTimeout(() => document.querySelectorAll('.holder').forEach(h => h.classList.remove('receiving')), 1500);
+      return;
+    }
+    const h = HOLDERS[i];
+    const pay = monthly * (h.tokens / 100);
+    totalDistributed += pay;
+    log('green', `  → ${h.name} (${h.tokens}t = ${(h.tokens).toFixed(0)}%): ${dollars(pay)} USDC`);
+    const card = document.querySelector(`[data-idx="${i}"]`);
+    if (card) {
+      card.classList.add('receiving');
+      const p = card.querySelector('.payout');
+      if (p) p.textContent = `+${dollars(pay)} USDC`;
+    }
+    i++;
+  }, 250);
+}
+
+// ========== UTIL ==========
+function log(cls, html) {
+  const t = document.getElementById('ticker');
+  const ts = new Date().toLocaleTimeString();
+  const d = document.createElement('div');
+  d.className = 'tick';
+  d.innerHTML = `<span class="ts">[${ts}]</span><span class="${cls}">${html}</span>`;
+  t.appendChild(d);
+  t.scrollTop = t.scrollHeight;
+}
+
+function dollars(n) {
+  return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+// ========== INIT ==========
+window.addEventListener('load', () => {
+  buildTokenVis();
+});
+</script>
+
+</body>
+</html>
