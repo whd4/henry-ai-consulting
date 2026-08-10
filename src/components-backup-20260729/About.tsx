@@ -72,7 +72,7 @@ export default function About() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <p className="label mb-6">Who You&apos;re Hiring</p>
-              <h2 className="heading-lg mb-8" style={{ color: "#16202e" }}>
+              <h2 className="heading-lg mb-8" style={{ color: "#d4c5a0" }}>
                 Four generations
                 <br />
                 <span className="gradient-text">in this business.</span>
@@ -86,20 +86,20 @@ export default function About() {
               transition={{ duration: 1, delay: 0.15 }}
               className="flex flex-col gap-5"
             >
-              <p className="body-md" style={{ color: "#55606f" }}>
+              <p className="body-md" style={{ color: "#6b5d48" }}>
                 The Dwyer family has worked Texas oil since the industry was young.
                 Four generations of operators — people who have signed division
                 orders, argued over run tickets, and watched what happens to a
                 royalty check when nobody is checking it.
               </p>
-              <p className="body-md" style={{ color: "#55606f" }}>
+              <p className="body-md" style={{ color: "#6b5d48" }}>
                 That matters here for one reason. Underpayment rarely looks like
                 theft. It looks like a decimal interest that was never corrected
                 after a unit was redrawn, a post-production deduction the lease
                 never permitted, or a price that quietly stopped matching the
                 index. You have to know the business to see it.
               </p>
-              <p className="body-md" style={{ color: "#55606f" }}>
+              <p className="body-md" style={{ color: "#6b5d48" }}>
                 We use modern analytical tools to do in hours what used to take an
                 accountant a month. The tools do the arithmetic. A person who
                 knows what a division order is decides what it means — and signs
@@ -113,18 +113,18 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.3 }}
               className="mt-10 pl-5"
-              style={{ borderLeft: "2px solid rgba(138, 106, 47, 0.35)" }}
+              style={{ borderLeft: "2px solid rgba(184, 151, 90, 0.35)" }}
             >
               <p
                 className="text-base mb-2"
                 style={{
                   fontFamily: "var(--font-cinzel), Cinzel, serif",
-                  color: "#16202e",
+                  color: "#d4c5a0",
                 }}
               >
                 If we find nothing, we tell you that.
               </p>
-              <p className="body-md" style={{ color: "#55606f" }}>
+              <p className="body-md" style={{ color: "#6b5d48" }}>
                 A clean audit is a real result — it&apos;s the answer to a question
                 that was costing you sleep. We would rather hand you a short report
                 than manufacture a finding.
@@ -153,7 +153,7 @@ export default function About() {
                 >
                   <span
                     className="font-mono text-[11px] tracking-widest shrink-0 pt-1"
-                    style={{ color: "#8a6a2f" }}
+                    style={{ color: "#b8975a" }}
                   >
                     {p.step}
                   </span>
@@ -162,14 +162,14 @@ export default function About() {
                       className="text-sm mb-2"
                       style={{
                         fontFamily: "var(--font-cinzel), Cinzel, serif",
-                        color: "#16202e",
+                        color: "#d4c5a0",
                       }}
                     >
                       {p.title}
                     </h3>
                     <p
                       className="text-sm"
-                      style={{ color: "#55606f", lineHeight: 1.7 }}
+                      style={{ color: "#6b5d48", lineHeight: 1.7 }}
                     >
                       {p.detail}
                     </p>
@@ -180,11 +180,11 @@ export default function About() {
 
             <div
               className="mt-8 pt-6"
-              style={{ borderTop: "1px solid rgba(138, 106, 47, 0.08)" }}
+              style={{ borderTop: "1px solid rgba(184, 151, 90, 0.08)" }}
             >
               <p
                 className="text-[10px] tracking-[0.2em] uppercase"
-                style={{ color: "#606b7a" }}
+                style={{ color: "#4a3f30" }}
               >
                 Your documents are never shared, sold, or used to train anything
               </p>

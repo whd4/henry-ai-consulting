@@ -74,7 +74,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="noise min-h-full flex flex-col" style={{ background: "#050301", color: "#d4c5a0" }}>
+      {/* The inline background/color here overrode globals.css entirely — that is why the
+          page stayed black after the theme was rewritten. The "noise" class (a fixed
+          film-grain overlay) is also dropped: grain reads as texture on a dark luxury page
+          and as a dirty screen on a white professional one. */}
+      <body className="min-h-full flex flex-col" style={{ background: "#ffffff", color: "#16202e" }}>
         <SmoothScroll>{children}</SmoothScroll>
         <Script
           defer

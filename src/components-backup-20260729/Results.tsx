@@ -16,7 +16,7 @@ export default function Results() {
           className="text-center mb-20"
         >
           <p className="label mb-6">The Question</p>
-          <h2 className="heading-lg" style={{ color: "#16202e" }}>
+          <h2 className="heading-lg" style={{ color: "#d4c5a0" }}>
             Are you getting what<br />
             <span className="gradient-text">you&apos;re owed?</span>
           </h2>
@@ -38,15 +38,15 @@ export default function Results() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
               className="flex items-start gap-5 py-4"
-              style={{ borderBottom: "1px solid rgba(138, 106, 47, 0.04)" }}
+              style={{ borderBottom: "1px solid rgba(184, 151, 90, 0.04)" }}
             >
               <span
                 className="text-lg font-mono shrink-0 mt-0.5"
-                style={{ color: "#8a6a2f" }}
+                style={{ color: "#b8975a" }}
               >
                 ?
               </span>
-              <p className="text-base" style={{ color: "#55606f", lineHeight: 1.7 }}>
+              <p className="text-base" style={{ color: "#8a7a60", lineHeight: 1.7 }}>
                 {question}
               </p>
             </motion.div>
@@ -60,7 +60,7 @@ export default function Results() {
           transition={{ duration: 1, delay: 0.3 }}
           className="text-center mt-16"
         >
-          <p className="body-md mb-8" style={{ color: "#55606f" }}>
+          <p className="body-md mb-8" style={{ color: "#6b5d48" }}>
             If you answered yes to any of these &mdash; or you&apos;re not sure
             &mdash; that uncertainty is costing you money right now.
           </p>

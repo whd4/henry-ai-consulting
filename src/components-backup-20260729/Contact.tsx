@@ -66,7 +66,7 @@ export default function Contact() {
           <h2 className="heading-lg mb-4 gradient-text-warm">
             Request Assessment
           </h2>
-          <p className="body-md" style={{ color: "#55606f" }}>
+          <p className="body-md" style={{ color: "#6b5d48" }}>
             All inquiries are confidential. We respond within 48 hours
             to qualified submissions.
           </p>
@@ -87,23 +87,23 @@ export default function Contact() {
             >
               <div
                 className="w-12 h-12 mx-auto mb-5 flex items-center justify-center"
-                style={{ border: "1px solid rgba(138, 106, 47, 0.3)" }}
+                style={{ border: "1px solid rgba(184, 151, 90, 0.3)" }}
               >
-                <svg className="w-5 h-5" style={{ color: "#8a6a2f" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" style={{ color: "#b8975a" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
               <h3 className="heading-md mb-2">Inquiry received.</h3>
-              <p className="body-md" style={{ color: "#55606f" }}>
+              <p className="body-md" style={{ color: "#6b5d48" }}>
                 A representative will contact you within 48 hours.
               </p>
             </motion.div>
           ) : failed ? (
             <motion.div initial={false} animate={{ opacity: 1 }} className="text-center py-12">
-              <h3 className="heading-md mb-3" style={{ color: "#16202e" }}>
+              <h3 className="heading-md mb-3" style={{ color: "#d4c5a0" }}>
                 This form isn&apos;t reaching us right now.
               </h3>
-              <p className="body-md mb-6" style={{ color: "#55606f" }}>
+              <p className="body-md mb-6" style={{ color: "#6b5d48" }}>
                 Rather than let your message disappear, we&apos;d rather tell you. Email us
                 directly and it will be read today.
               </p>
@@ -114,21 +114,21 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div>
-                <label htmlFor="name" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#55606f" }}>
+                <label htmlFor="name" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#6b5d48" }}>
                   Name
                 </label>
                 <input id="name" name="name" type="text" required className="input" placeholder="" />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#55606f" }}>
+                <label htmlFor="email" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#6b5d48" }}>
                   Email
                 </label>
                 <input id="email" name="email" type="email" required className="input" placeholder="" />
               </div>
 
               <div>
-                <label htmlFor="concern" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#55606f" }}>
+                <label htmlFor="concern" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#6b5d48" }}>
                   Nature of Concern
                 </label>
                 <select id="concern" name="concern" className="input">
@@ -143,7 +143,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#55606f" }}>
+                <label htmlFor="message" className="block text-[10px] mb-2 tracking-[0.2em] uppercase" style={{ color: "#6b5d48" }}>
                   Brief Description
                 </label>
                 <textarea
@@ -165,7 +165,7 @@ export default function Contact() {
                 {loading ? "Sending..." : "Submit Inquiry"}
               </motion.button>
 
-              <p className="text-center text-[9px] tracking-[0.2em] uppercase" style={{ color: "#606b7a" }}>
+              <p className="text-center text-[9px] tracking-[0.2em] uppercase" style={{ color: "#4a3f30" }}>
                 All information is held in strict confidence
               </p>
             </form>

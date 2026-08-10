@@ -41,9 +41,9 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               className="text-[11px] tracking-[0.15em] uppercase transition-colors duration-300"
-              style={{ fontFamily: "var(--font-cinzel), Cinzel, serif", color: "#55606f" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#8a6a2f")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#55606f")}
+              style={{ fontFamily: "var(--font-cinzel), Cinzel, serif", color: "#6b5d48" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#b8975a")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#6b5d48")}
             >
               {l.label}
             </a>

@@ -65,12 +65,12 @@ export default function Services() {
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="py-10 border-b"
-              style={{ borderColor: "rgba(138, 106, 47, 0.06)" }}
+              style={{ borderColor: "rgba(184, 151, 90, 0.06)" }}
             >
-              <h3 className="heading-md mb-4" style={{ color: "#16202e" }}>
+              <h3 className="heading-md mb-4" style={{ color: "#d4c5a0" }}>
                 {s.title}
               </h3>
-              <p className="body-md max-w-2xl" style={{ color: "#55606f" }}>
+              <p className="body-md max-w-2xl" style={{ color: "#6b5d48" }}>
                 {s.brief}
               </p>
             </motion.div>
@@ -83,9 +83,9 @@ export default function Services() {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 }}
           className="text-center mt-16 text-[10px] tracking-[0.25em] uppercase"
-          style={{ color: "#606b7a" }}
+          style={{ color: "#4a3f30" }}
         >
-          Every finding cites the record it came from — you see the arithmetic, not a verdict
+          Methodology details are disclosed under NDA only
         </motion.p>
       </div>
     </section>

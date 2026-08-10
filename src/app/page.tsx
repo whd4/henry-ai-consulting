@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import Engagements from "@/components/Engagements";
 import Results from "@/components/Results";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
@@ -13,8 +14,9 @@ export default function Home() {
       <main>
         <Hero />
         {/* Content sits above the fixed oil background */}
-        <div className="relative z-10" style={{ background: "#050301" }}>
+        <div className="relative z-10" style={{ background: "#ffffff" }}>
           <Services />
+          <Engagements />
           <Results />
           <About />
           <Contact />

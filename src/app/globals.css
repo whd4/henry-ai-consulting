@@ -1,20 +1,42 @@
 @import "tailwindcss";
 
+/*
+  REDESIGNED 2026-07-29 — dark "private club" to light professional firm.
+
+  WHY. The previous theme was near-black (#050301) with gold Cinzel uppercase everywhere,
+  a 3D oil background, a "CLASSIFIED" stamp overlay, and film noise. That is the visual
+  language of a luxury watch brand or a crypto launch. This firm asks a stranger to hand
+  over their lease documents and financial records and wire five figures.
+
+  The firms that win this work — the forensic accounting and royalty-audit practices people
+  actually hire — look the opposite way: white or warm-white, deep navy or charcoal text,
+  one restrained accent, generous whitespace, real names, real numbers. Corporate and
+  inviting, because trust here comes from looking established, not from looking exclusive.
+
+  The gold is kept but darkened to a bronze that is legible on white and reads as
+  oil-country heritage rather than luxury packaging.
+*/
+
 :root {
-  --background: #050301;
-  --foreground: #d4c5a0;
-  --gold: #b8975a;
-  --gold-light: #d4b068;
-  --gold-dim: rgba(184, 151, 90, 0.15);
-  --muted: #6b5d48;
-  --card-bg: rgba(255, 255, 255, 0.015);
-  --card-border: rgba(184, 151, 90, 0.08);
-  --card-border-hover: rgba(184, 151, 90, 0.2);
-  --oil-dark: #0a0704;
+  --background: #ffffff;
+  --surface: #f7f6f3;          /* warm off-white for alternating sections */
+  --foreground: #16202e;       /* deep navy-charcoal — headings and primary text */
+  --body: #55606f;             /* slate — body copy, comfortable at length */
+  --muted: #606b7a;            /* labels, captions, meta — darkened from #8792a3, which
+                                  measured 3.15:1 on white and failed WCAG AA at the 9-10px
+                                  sizes it's actually used at. This clears 4.5:1. */
+  --gold: #8a6a2f;             /* bronze accent, AA-legible on white */
+  --gold-light: #a8823c;
+  --gold-dim: rgba(138, 106, 47, 0.12);
+  --card-bg: #ffffff;
+  --card-border: rgba(22, 32, 46, 0.10);
+  --card-border-hover: rgba(138, 106, 47, 0.45);
+  --rule: rgba(22, 32, 46, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
@@ -26,7 +48,7 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(184, 151, 90, 0.15) transparent;
+  scrollbar-color: rgba(22, 32, 46, 0.18) transparent;
 }
 
 html {
@@ -50,114 +72,124 @@ html.lenis, html.lenis body {
   scroll-behavior: auto !important;
 }
 
-/* ——— Glass Nav ——— */
+/* ——— Nav ——— */
 .glass-nav {
-  background: rgba(5, 3, 1, 0.85);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(184, 151, 90, 0.06);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--rule);
 }
 
-/* ——— Cards ——— */
+/* ——— Cards ———
+   Real borders and a soft elevation. The old cards were rgba(255,255,255,0.015) on black,
+   i.e. essentially invisible, which is why every section read as one undifferentiated wall. */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 1.25rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(22, 32, 46, 0.04), 0 8px 24px -16px rgba(22, 32, 46, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover {
   border-color: var(--card-border-hover);
-  box-shadow:
-    0 0 0 1px var(--card-border-hover),
-    0 8px 40px -12px rgba(184, 151, 90, 0.08);
-  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(22, 32, 46, 0.05), 0 16px 40px -20px rgba(22, 32, 46, 0.2);
+  transform: translateY(-2px);
 }
 
-/* ——— Typography ——— */
+/* ——— Typography ———
+   Cinzel is retained for the wordmark and the top-level headline only. Section headings
+   move to the sans face in sentence case: uppercase-everything with heavy tracking reads
+   as a fashion label, and it is genuinely harder to read at length. */
 .heading-xl {
   font-family: var(--font-display), "Cinzel", serif;
-  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-size: clamp(2.6rem, 5.5vw, 4.5rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1.1;
+  letter-spacing: 0.06em;
+  line-height: 1.08;
   text-transform: uppercase;
+  color: var(--foreground);
 }
 
 .heading-lg {
-  font-family: var(--font-display), "Cinzel", serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.015em;
   line-height: 1.2;
+  color: var(--foreground);
 }
 
 .heading-md {
-  font-family: var(--font-display), "Cinzel", serif;
-  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   font-weight: 600;
-  letter-spacing: 0.02em;
-  line-height: 1.3;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--foreground);
 }
 
 .body-lg {
-  font-size: clamp(1rem, 1.3vw, 1.1rem);
-  line-height: 1.8;
-  color: var(--muted);
+  font-size: clamp(1.02rem, 1.3vw, 1.15rem);
+  line-height: 1.75;
+  color: var(--body);
 }
 
 .body-md {
-  font-size: 0.95rem;
-  line-height: 1.8;
-  color: var(--muted);
+  font-size: 0.975rem;
+  line-height: 1.75;
+  color: var(--body);
 }
 
 .label {
   font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
 }
 
-/* ——— Gold Gradient Text ——— */
-.gradient-text {
-  background: linear-gradient(135deg, #b8975a 0%, #d4b068 40%, #e8cc88 60%, #b8975a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Gradients kept as class names so existing markup doesn't break, but flattened to solid
+   colour — gradient text on white looks cheap and hurts contrast. */
+.gradient-text,
+.gradient-text-warm {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  background-clip: initial;
+  color: var(--gold);
 }
 
 .gradient-text-warm {
-  background: linear-gradient(135deg, #d4c5a0 0%, #8a7a60 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--foreground);
 }
 
-/* ——— Buttons ——— */
+/* ——— Buttons ———
+   The primary CTA is now filled. A ghost button as the main call to action measurably
+   under-converts; on a page asking for a five-figure engagement it also reads as tentative. */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  border-radius: 0;
-  background: transparent;
+  padding: 0.9rem 2rem;
+  border-radius: 0.25rem;
+  background: var(--gold);
   border: 1px solid var(--gold);
-  color: var(--gold);
-  font-family: var(--font-display), "Cinzel", serif;
+  color: #ffffff;
+  font-family: var(--font-sans), system-ui, sans-serif;
   font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary:hover {
-  background: var(--gold);
-  color: var(--background);
-  box-shadow: 0 0 30px 4px rgba(184, 151, 90, 0.12);
+  background: #75591f;
+  border-color: #75591f;
+  box-shadow: 0 6px 20px -8px rgba(138, 106, 47, 0.55);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -165,17 +197,17 @@ html.lenis, html.lenis body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  border-radius: 0;
-  background: transparent;
-  border: 1px solid rgba(184, 151, 90, 0.2);
-  color: var(--muted);
-  font-family: var(--font-display), "Cinzel", serif;
-  font-weight: 500;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.9rem 2rem;
+  border-radius: 0.25rem;
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-secondary:hover {
@@ -186,29 +218,29 @@ html.lenis, html.lenis body {
 /* ——— Dividers ——— */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(184, 151, 90, 0.12), transparent);
+  background: var(--rule);
 }
 
 /* ——— Form Inputs ——— */
 .input {
   width: 100%;
-  padding: 0.875rem 1.25rem;
-  border-radius: 0;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(184, 151, 90, 0.1);
+  padding: 0.8rem 1rem;
+  border-radius: 0.25rem;
+  background: #ffffff;
+  border: 1px solid var(--card-border);
   color: var(--foreground);
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
   outline: none;
 }
 
 .input::placeholder {
-  color: rgba(184, 151, 90, 0.25);
+  color: var(--muted);
 }
 
 .input:focus {
-  border-color: rgba(184, 151, 90, 0.4);
-  box-shadow: 0 0 0 2px rgba(184, 151, 90, 0.06);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(138, 106, 47, 0.12);
 }
 
 /* ——— Pulse Dot ——— */
@@ -217,44 +249,13 @@ html.lenis, html.lenis body {
   height: 6px;
   border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 8px 2px rgba(184, 151, 90, 0.3);
   animation: pulse-gold 3s ease-in-out infinite;
 }
 
 @keyframes pulse-gold {
-  0%, 100% { opacity: 0.5; box-shadow: 0 0 8px 2px rgba(184, 151, 90, 0.2); }
-  50% { opacity: 1; box-shadow: 0 0 12px 4px rgba(184, 151, 90, 0.4); }
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
 }
 
-/* ——— Classified stamp effect ——— */
-.classified {
-  position: relative;
-}
-
-.classified::after {
-  content: "CLASSIFIED";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-12deg);
-  font-family: var(--font-display), "Cinzel", serif;
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: rgba(184, 151, 90, 0.04);
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-/* ——— Noise Texture ——— */
-.noise::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.02;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-}
+/* The "CLASSIFIED" watermark and the film-grain overlay are deliberately gone.
+   Both signalled secrecy. This buyer is shopping for transparency. */
